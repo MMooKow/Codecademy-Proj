@@ -2,7 +2,7 @@
 const getUserChoice = userInput =>{
   userInput = userInput.toLowerCase();
   if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'){ 
-   console.log(userInput);                      }else{
+   return userInput;                      }else{
   console.log('Error\: Invalid Input'); }
 };
 //Get computer move through RNG
@@ -12,28 +12,46 @@ function getComputerChoice(){
   switch (randomNum){
     case 0:
       compInput = "rock";
-      console.log(compInput);
+      return compInput;
       break;
     case 1:
       compInput = "paper";
-      console.log(compInput);
+      return compInput;
       break;
     case 2:
       compInput = "scissors";
-      console.log(compInput);
+      return compInput;
       break;
   }
 }
+//Function to decide winner
 function determineWinner(userChoice, computerChoice) {
   if (userChoice === computerChoice){
-      console.log('Tie!');
-      }else if (userChoice = 'rock' && computerChoice === 'paper') {
-      console.log('Player wins!');
-   }else if (userChoice === 'paper' && computerChoice === 'rock') {
-      console.log('Player wins!');
-   }else if (userChoice === 'scissors' && computerChoice === 'paper'){
-      console.log('Player wins!');
-   }else{
-     console.log('Computer wins!');
-   }
+      return 'Tie game!';
+  }
+  //Decide outcome if player chooses 'rock'
+  if (userChoice === 'rock'){
+    if(computerChoice === 'scissors'){
+      return 'Player wins! Rock beats scissors.'
+    }else{
+      return 'Computer wins! Paper beats rock.'
+    }
+  }
+  //Decide outcome if player chooses 'paper'
+  if (userChoice === 'paper'){
+    if (computerChoice === 'rock'){
+      return 'Player wins! Paper beats rock.'
+    }else{
+      return 'Computer wins! Scissors beat paper.'
+    }
+  }
+  //Decide outcome if player chooses 'scissors'
+  if (userChoice === 'scissors'){
+    if (computerChoice === 'paper'){
+      return 'Player wins! Scissors beats paper.'
+    }else{
+      return 'Computer wins! Rock beats scissors.'
+    }
+  }
 }
+console.log(determineWinner('paper', 'scissors'));
