@@ -1,7 +1,7 @@
 ﻿//Get user decision on their move
 const getUserChoice = userInput =>{
   userInput = userInput.toLowerCase();
-  if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'){ 
+  if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'|| userInput === 'bomb'){ 
    return userInput;                      }else{
   console.log('Error\: Invalid Input'); }
 };
@@ -29,6 +29,9 @@ function determineWinner(userChoice, computerChoice) {
   if (userChoice === computerChoice){
       return 'Tie game!';
   }
+  if (userChoice === 'bomb'){
+    return 'Player wins! Bomb beats all!'
+  }
   //Decide outcome if player chooses 'rock'
   if (userChoice === 'rock'){
     if(computerChoice === 'scissors'){
@@ -54,4 +57,12 @@ function determineWinner(userChoice, computerChoice) {
     }
   }
 }
-console.log(determineWinner('paper', 'scissors'));
+//Function used to bring in the other three fucntions and get everything working
+function playGame(){
+  let userChoice = getUserChoice('bomb');
+  let computerChoice = getComputerChoice();
+  console.log('You chose ' + userChoice);
+  console.log('Computer chose ' + computerChoice);
+  console.log(determineWinner(userChoice, computerChoice));
+}
+playGame();
