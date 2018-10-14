@@ -5,6 +5,7 @@ class School {
     this._level = level;
     this._numberOfStudents = numberOfStudents;
   }
+  //Getters below
   get name() {
     return this._name;
   }
@@ -14,6 +15,7 @@ class School {
   get numberOfStudents() {
     return this._numberOfStudents;
   }
+  //Setter below
   set numberOfStudents(num) {
     if (typeof num === 'number'){
     this.numberOfStudents = num;
@@ -21,15 +23,17 @@ class School {
       return console.log('Error: Please enter a number value.');
     }
   }
+  //School methods
   quickFacts() {
-    console.log(`${name} educates ${numberOfStudents} students at the ${level} school level.`);
+    console.log(`${this.name} educates ${this.numberOfStudents} students at the ${this.level} school level.`);
   }
   static pickSubstituteTeacher(substituteTeachers) {
     const subs = substituteTeachers
     let i = Math.floor(Math.random()* subs.length)
-    return subs[i];
+    return console.log(subs[i]);
   }
 }
+//Primary school class and property
 class Primary extends School {
   constructor(name, level, numberOfStudents, pickUpPolicy) {
     super(name, level, numberOfStudents);
@@ -39,11 +43,13 @@ class Primary extends School {
     return this._pickUpPolicy;
   }
 }
+//Middle school class. No non-inherited property
 class Middle extends School {
   constructor(name, level, numberOfStudents){
     super(name, level, numberOfStudents);
   }
 }
+//High school class and prperty
 class High extends School {
   constructor(name, level, numberOfStudents, sportsTeam) {
     super(name, level, numberOfStudents);
@@ -53,4 +59,9 @@ class High extends School {
     return this._sportsTeam;
   }
 }
-const primarySchool = new Primary;
+//Testing instances of classes with methods
+const lorraineHansbury = new Primary('Lorraine Hansbury', 'Primary', 514, 'Students must be picked up by a parent, guardian, or a family member over the age of 13.');
+lorraineHansbury.quickFacts();
+School.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli']);
+const alSmith = new High('Al E. Smith', 'High', 415, ['Baseball', 'Basketball', 'Volleyball', 'Track and Field']);
+console.log(alSmith.sportsTeam);
